@@ -5,7 +5,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const UserSignUp = require("./models/signUpModel");
+const UserSignup = require("./models/userSignupModel");
+const Post = require("./models/postModel");
 
 app.use(express.static(path.resolve(__dirname, "../dist")));
 app.use(bodyParser.json());
@@ -18,13 +19,21 @@ mongoose
   .then(() => console.log("DB connected"))
   .catch(e => console.log("error", e));
 
-app.get("/users", (req, res) => {
-  UserSignUp.find().then(users => res.json(users));
-});
-
 app.post("/signup", (req, res) => {
-  let user = new UserSignUp(req.body);
+  let user = new UserSignup(req.body);
   user.save().then(data => res.json(data));
+});
+app.get("/api/users", (req, res) => {
+  UserSignup.find().then(data => res.json(data));
+});
+app.post("/api/postform", (req, res) => {
+  // console.log(req.body);
+
+  let post = new Post(req.body);
+  post.save().then(data => res.json(data));
+});
+app.get("/api/posts", (req, res) => {
+  Post.find().then(data => res.json(data));
 });
 app.listen(3000, () => {
   console.log("server is worjing on port 3000");

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 class SignUp extends Component {
   state = {
-    firstName: "",
-    lastName: "",
+    fname: "",
+    lname: "",
     email: "",
     password: ""
   };
@@ -22,14 +22,14 @@ class SignUp extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           First Name:{" "}
-          <input type="text" name="firstName" onChange={this.handleChange} />
+          <input type="text" name="fname" onChange={this.handleChange} />
           Last Name:{" "}
-          <input type="text" name="lastName" onChange={this.handleChange} />
+          <input type="text" name="lname" onChange={this.handleChange} />
           Email:{" "}
           <input type="email" name="email" onChange={this.handleChange} />
           Password:{" "}
           <input type="password" name="password" onChange={this.handleChange} />
-          <input type="submit" value="Sign UP" />
+          <input type="submit" />
         </form>
       </div>
     );
